@@ -9,12 +9,11 @@ let transporter = nodemailer.createTransport({
 });
 
 module.exports = function(app) {
-    app.post("/contact", async(req, res) => {
+    app.post("/contact", (req, res) => {
         let { name, email, message } = req.body;
-        console.log(`Sending message from ${name} < ${email} >\n\n ${message}`);
+        console.log(req.body);
 
-        await transporter
-            .sendMail({
+        return transporter.sendMail({
                 from: `"📫 ${name}" <${email}>`,
                 to: process.env.FOOBAR,
                 subject: `Message from ${name}`,
@@ -22,12 +21,16 @@ module.exports = function(app) {
             Email : ${email}<br>
             <hr>
             <p>${message}</p>`,
-            })
-            .then(() => {
-                res.sendStatus(200);
-            })
-            .catch(() => {
-                res.sendStatus(404);
-            });
+            },
+            (error, info) => {
+                if (error) {
+                    res.sendStatus(404);
+                    console.log("Email failed: ", error);
+                } else {
+                    res.sendStatus(200);
+                    console.log("Email sent: " + info.response);
+                }
+            }
+        );
     });
 };
