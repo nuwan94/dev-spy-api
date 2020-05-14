@@ -11,6 +11,7 @@ let transporter = nodemailer.createTransport({
 module.exports = function(app) {
     app.post("/contact", async(req, res) => {
         let { name, email, message } = req.body;
+        console.log(`Sending message from ${name} < ${email} >\n\n ${message}`);
 
         await transporter
             .sendMail({
@@ -20,7 +21,7 @@ module.exports = function(app) {
                 html: `Name : ${name}<br>
             Email : ${email}<br>
             <hr>
-            <p>${message.replace(/[\n]/g, "<br>")}</p>`,
+            <p>${message}</p>`,
             })
             .then(() => {
                 res.sendStatus(200);
