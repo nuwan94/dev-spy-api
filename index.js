@@ -21,6 +21,13 @@ require("./cron/sync");
 
 // Import controllers
 require("./controllers/developer")(app);
+require("./controllers/default")(app);
+require("./controllers/contact")(app);
+
+app.use("/files", express.static(__dirname + "/public"));
 
 // App start on PORT
 app.listen(process.env.PORT || 5000);
+console.log(
+    `Node server running on port http://localhost:${process.env.PORT || 5000}`
+);
