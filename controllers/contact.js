@@ -1,36 +1,36 @@
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
+const status = require("http-status");
 
-let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.FOO,
-        pass: process.env.BAR,
-    },
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = function(app) {
     app.post("/contact", (req, res) => {
         let { name, email, message } = req.body;
-        console.log(req.body);
-
-        return transporter.sendMail({
-                from: `"📫 ${name}" <${email}>`,
-                to: process.env.FOOBAR,
-                subject: `Message from ${name}`,
+        if (!(name && email && message)) {
+            res.send(status.BAD_REQUEST);
+            return;
+        } else {
+            const sg = {
+                to: process.env.SENDGRID_TO,
+                from: process.env.SENDGRID_FROM,
+                subject: `Message from ${name} <${email}>`,
                 html: `Name : ${name}<br>
-            Email : ${email}<br>
-            <hr>
-            <p>${message}</p>`,
-            },
-            (error, info) => {
-                if (error) {
-                    res.sendStatus(404);
-                    console.log("Email failed: ", error);
-                } else {
-                    res.sendStatus(200);
-                    console.log("Email sent: " + info.response);
+                     Email : ${email}<br>
+                     <hr>
+                     <p>${message}</p>`,
+            };
+            sgMail.send(sg).then(
+                (res) => {
+                    console.log(res);
+                },
+                (err) => {
+                    if (err.response) {
+                        console.error(err.response.body);
+                    }
                 }
-            }
-        );
+            );
+            res.send(status.OK);
+        }
     });
 };
