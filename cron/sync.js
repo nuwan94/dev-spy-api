@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const cron = require("node-cron");
 const axios = require("axios");
+const sharp = require("sharp");
 
 let cronInterval = "0 * * * *";
 
@@ -49,14 +50,22 @@ cron.schedule(cronInterval, async function() {
 
 // Cache Github Graph
 cron.schedule(cronInterval, async function() {
-    console.log("Downlaoding ghchart-image");
-    const url = process.env.GH_CHARTS_URL;
-    const temp = path.resolve(__dirname, "../public", "ghchart.svg");
-    const writer = fs.createWriteStream(temp);
     const response = await axios({
-        url,
+        url: process.env.GH_CHARTS_URL,
         method: "GET",
-        responseType: "stream",
+        responseType: "arraybuffer",
     });
-    response.data.pipe(writer);
+
+    const outputPath = path.resolve(__dirname, "../public", "ghchart.webp");
+    sharp(Buffer.from(response.data))
+        .flatten({ background: { r: 255, g: 255, b: 255 } })
+        .webp()
+        .toFile(outputPath)
+        .then((info) => {
+            console.log("Downloaded ghchart and converted.");
+            console.log(info);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });

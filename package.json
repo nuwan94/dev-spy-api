@@ -20,7 +20,8 @@
         "http-status": "^1.4.2",
         "mongoose": "^5.9.13",
         "node-cron": "^2.0.3",
-        "nodemailer": "^6.4.6"
+        "nodemailer": "^6.4.6",
+        "sharp": "^0.25.3"
     },
     "devDependencies": {
         "nodemon": "^2.0.3"
