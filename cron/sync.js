@@ -1,10 +1,9 @@
-const fs = require("fs");
 const path = require("path");
 const cron = require("node-cron");
 const axios = require("axios");
 const sharp = require("sharp");
 
-let cronInterval = "0 * * * *";
+let cronInterval = process.env.CRON_INTERVAL;
 
 // Import mongo models
 const GitHub = require("../models/github");
