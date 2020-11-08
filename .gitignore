@@ -117,3 +117,5 @@ dist
 
 # custom igonres
 # public/*.webp
+
+.vscode

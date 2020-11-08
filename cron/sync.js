@@ -1,7 +1,7 @@
-const path = require("path");
+// const path = require("path");
 const cron = require("node-cron");
 const axios = require("axios");
-const sharp = require("sharp");
+// const sharp = require("sharp");
 
 let cronInterval = process.env.CRON_INTERVAL;
 
@@ -48,23 +48,23 @@ cron.schedule(cronInterval, async function() {
 });
 
 // Cache Github Graph
-cron.schedule(cronInterval, async function() {
-    const response = await axios({
-        url: process.env.GH_CHARTS_URL,
-        method: "GET",
-        responseType: "arraybuffer",
-    });
+// cron.schedule(cronInterval, async function() {
+//     const response = await axios({
+//         url: process.env.GH_CHARTS_URL,
+//         method: "GET",
+//         responseType: "arraybuffer",
+//     });
 
-    const outputPath = path.resolve(__dirname, "../public", "ghchart.webp");
-    sharp(Buffer.from(response.data))
-        .flatten({ background: { r: 255, g: 255, b: 255 } })
-        .webp()
-        .toFile(outputPath)
-        .then((info) => {
-            console.log("Downloaded ghchart and converted.");
-            console.log(info);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
+//     const outputPath = path.resolve(__dirname, "../public", "ghchart.webp");
+//     sharp(Buffer.from(response.data))
+//         .flatten({ background: { r: 255, g: 255, b: 255 } })
+//         .webp()
+//         .toFile(outputPath)
+//         .then((info) => {
+//             console.log("Downloaded ghchart and converted.");
+//             console.log(info);
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//         });
+// });

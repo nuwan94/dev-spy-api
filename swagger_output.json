@@ -1,0 +1,146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Dev Spy API by Nuwan",
+    "description": "All in one API for Developer Statistics.<br/>This documentation is automatically generated with <b>Swagger</b>"
+  },
+  "host": "localhost:5050",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Statistics",
+      "description": "Developer statistics in major platforms."
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {},
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/github": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "description": "Stats from GitHub API.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "GitHub data successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/github"
+            }
+          }
+        }
+      }
+    },
+    "/stackoverflow": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "description": "Stats from StackExchange API.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Stackoverflow data successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/stackoverflow"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "github": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "25694570"
+        },
+        "followers": {
+          "type": "number",
+          "example": 10
+        },
+        "following": {
+          "type": "number",
+          "example": 10
+        },
+        "public_gists": {
+          "type": "number",
+          "example": 1
+        },
+        "public_repos": {
+          "type": "number",
+          "example": 10
+        }
+      },
+      "xml": {
+        "name": "github"
+      }
+    },
+    "stackoverflow": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "number",
+          "example": 3760956
+        },
+        "badge_counts": {
+          "type": "object",
+          "properties": {
+            "bronze": {
+              "type": "number",
+              "example": 10
+            },
+            "silver": {
+              "type": "number",
+              "example": 10
+            },
+            "gold": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "link": {
+          "type": "string",
+          "example": "https://stackoverflow.com/users/3125964/nuwan-alawatta"
+        },
+        "reputation": {
+          "type": "number",
+          "example": 1000
+        },
+        "reputation_change_day": {
+          "type": "number",
+          "example": 10
+        },
+        "reputation_change_month": {
+          "type": "number",
+          "example": 20
+        },
+        "reputation_change_quarter": {
+          "type": "number",
+          "example": 30
+        },
+        "reputation_change_week": {
+          "type": "number",
+          "example": 40
+        },
+        "reputation_change_year": {
+          "type": "number",
+          "example": 50
+        }
+      },
+      "xml": {
+        "name": "stackoverflow"
+      }
+    }
+  }
+}
