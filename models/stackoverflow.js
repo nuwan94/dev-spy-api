@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 let stackoverflow = new Schema({
     account_id: { type: Number },
+    reputation_change_year: { type: Number },
     reputation_change_quarter: { type: Number },
     reputation_change_month: { type: Number },
     reputation_change_week: { type: Number },
