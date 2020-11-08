@@ -3,7 +3,7 @@
   "info": {
     "version": "0.0.1",
     "title": "Dev Spy API by Nuwan",
-    "description": "All in one API for Developer Statistics.<br/>This documentation is automatically generated with <b>Swagger</b>"
+    "description": "All in one API for Developer Statistics.<br/>This documentation is automatically generated with Swagger."
   },
   "host": "localhost:5050",
   "basePath": "/",

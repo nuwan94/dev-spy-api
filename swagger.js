@@ -4,13 +4,18 @@ dotenv.config();
 const outputFile = "./swagger_output.json";
 const endpointsFiles = ["./controllers/developer.js"];
 
+let host_str = process.env.HOST;
+if (process.env.MY_ENV == 'dev') {
+    host_str += `:${process.env.PORT || 5050}`
+}
+
 const doc = {
     info: {
         version: "0.0.1",
         title: "Dev Spy API by Nuwan",
-        description: "All in one API for Developer Statistics.<br/>This documentation is automatically generated with <b>Swagger</b>"
+        description: "All in one API for Developer Statistics.<br/>This documentation is automatically generated with Swagger."
     },
-    host: `${process.env.HOST}:${process.env.PORT || 5000}`,
+    host: host_str,
     schemes: ['http', 'https'],
     tags: [{
         "name": "Statistics",
