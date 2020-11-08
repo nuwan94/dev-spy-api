@@ -16,7 +16,7 @@ const doc = {
         description: "All in one API for Developer Statistics.<br/>This documentation is automatically generated with Swagger."
     },
     host: host_str,
-    schemes: ['http', 'https'],
+    schemes: ['https'],
     tags: [{
         "name": "Statistics",
         "description": "Developer statistics in major platforms."
