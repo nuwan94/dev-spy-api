@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let stackoverflow = new Schema({
-    account_id: { type: Number },
+    account_id: { type: String },
     reputation_change_year: { type: Number },
     reputation_change_quarter: { type: Number },
     reputation_change_month: { type: Number },
@@ -17,6 +17,6 @@ let stackoverflow = new Schema({
             gold: { type: String },
         },
     },
-}, { collection: "stackoverflow" });
+}, { collection: "stackoverflow", timestamps: true });
 
 module.exports = mongoose.model("stackoverflow", stackoverflow);

@@ -10,11 +10,12 @@
   "tags": [
     {
       "name": "Statistics",
-      "description": "Developer statistics in major platforms."
+      "description": "Developer statistics data."
     }
   ],
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "securityDefinitions": {},
   "consumes": [],
@@ -53,6 +54,40 @@
           }
         }
       }
+    },
+    "/medium": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "description": "Stats from Medium Website.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Medium data successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/medium"
+            }
+          }
+        }
+      }
+    },
+    "/qwiklabs": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "description": "Stats from Qwiklabs Public Profile.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Medium data successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/qwiklabs"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -61,7 +96,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "example": "25694570"
+          "example": "12345678"
         },
         "followers": {
           "type": "number",
@@ -88,8 +123,8 @@
       "type": "object",
       "properties": {
         "account_id": {
-          "type": "number",
-          "example": 3760956
+          "type": "string",
+          "example": "1234567"
         },
         "badge_counts": {
           "type": "object",
@@ -110,7 +145,7 @@
         },
         "link": {
           "type": "string",
-          "example": "https://stackoverflow.com/users/3125964/nuwan-alawatta"
+          "example": "https://stackoverflow.com/users/1234567/user-x"
         },
         "reputation": {
           "type": "number",
@@ -139,6 +174,42 @@
       },
       "xml": {
         "name": "stackoverflow"
+      }
+    },
+    "medium": {
+      "type": "object",
+      "properties": {
+        "article_count": {
+          "type": "number",
+          "example": 1
+        },
+        "followers": {
+          "type": "number",
+          "example": 10
+        },
+        "following": {
+          "type": "number",
+          "example": 10
+        }
+      },
+      "xml": {
+        "name": "medium"
+      }
+    },
+    "qwiklabs": {
+      "type": "object",
+      "properties": {
+        "labs": {
+          "type": "number",
+          "example": 100
+        },
+        "quests": {
+          "type": "number",
+          "example": 10
+        }
+      },
+      "xml": {
+        "name": "qwiklabs"
       }
     }
   }

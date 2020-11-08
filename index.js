@@ -1,17 +1,16 @@
 const express = require("express");
 app = express();
 
-const swaggerUi = require('swagger-ui-express')
-const swaggerFile = require('./swagger_output.json')
-
-
 // Importing env from environment
 const dotenv = require("dotenv");
 dotenv.config();
 
 // Enable CORS
 var cors = require("cors");
-app.use(cors());
+const corsOptions = {
+    origin: 'https://nuwan.dev',
+}
+app.use(cors(corsOptions));
 
 // Setup body parser
 var bodyParser = require("body-parser");
@@ -27,15 +26,15 @@ require("./cron/sync");
 require("./controllers/developer")(app);
 require("./controllers/contact")(app);
 
-app.use("/files", express.static(__dirname + "/public"));
-
 // Serve Swagger UI
-var options = {
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+var swaggeOptions = {
     customSiteTitle: "Dev Spy API by Nuwan",
     explorer: false,
     customCss: '.swagger-ui .topbar { display: none }'
 };
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile, options))
+app.use('/', cors(), swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggeOptions))
 
 
 // App start on PORT

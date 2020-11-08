@@ -8,6 +8,6 @@ let github = new Schema({
     public_gists: { type: Number },
     followers: { type: Number },
     following: { type: Number },
-}, { collection: "github" });
+}, { collection: "github", timestamps: true });
 
 module.exports = mongoose.model("github", github);
