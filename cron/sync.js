@@ -27,7 +27,7 @@ cron.schedule(cronInterval, async function() {
                 if (err) {
                     console.log("GitHub Error : " + err);
                 } else {
-                    console.log("GitHub Success : Data Saved Successfully");
+                    console.log("GitHub Success : Data Saved Successfully", github.data);
                 }
             }
         );
@@ -46,7 +46,7 @@ cron.schedule(cronInterval, async function() {
                 if (err) {
                     console.log("StackOverflow Error : " + err);
                 } else {
-                    console.log("StackOverflow Success : Data Saved Successfully");
+                    console.log("StackOverflow Success : Data Saved Successfully", stackoverflow.data);
                 }
             }
         );
@@ -61,8 +61,8 @@ cron.schedule(cronInterval, async function() {
 
     await axios.get(process.env.MEDIUM_URI).then((response) => {
         const $ = cheerio.load(response.data);
-        followers_count = $('span:contains("Followers")').first().text().split(" ")[0];
-        following_count = $('span:contains("Following")').text().split(" ")[0];
+        followers_count = $('a:contains("Followers")').first().text().split(" ")[0];
+        following_count = $('a:contains("Following")').first().text().split(" ")[0];
     });
 
     await axios.get(process.env.MEDIUM_JSNO_FEED_URI)
@@ -86,7 +86,7 @@ cron.schedule(cronInterval, async function() {
                 if (err) {
                     console.log("Medium Error : " + err);
                 } else {
-                    console.log("Medium Success : Data Saved Successfully");
+                    console.log("Medium Success : Data Saved Successfully", mediumData);
                 }
             }
         );
@@ -120,7 +120,7 @@ cron.schedule(cronInterval, async function() {
                 if (err) {
                     console.log("Qwiklabs Error : " + err);
                 } else {
-                    console.log("Qwiklabs Success : Data Saved Successfully");
+                    console.log("Qwiklabs Success : Data Saved Successfully", qwiklabsData);
                 }
             }
         );
