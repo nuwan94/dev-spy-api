@@ -8,7 +8,7 @@ dotenv.config();
 // Enable CORS
 var cors = require("cors");
 const corsOptions = {
-    origin: ['https://nuwan.dev', 'localhost'],
+    origin: ['https://nuwan.dev', 'http://localhost:8080'],
 }
 app.use(cors(corsOptions));
 
