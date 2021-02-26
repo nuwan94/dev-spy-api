@@ -1,12 +1,12 @@
 # Dev Spy API by Nuwan
 
-As a developer have you ever wanted a single API that can fetch all the stats about you?
+As a developer have you ever wanted a single API that can fetch all the stats
+about you?
 
 Here is a simple solution that can be easily setup 100% free API using,
 
 - Heroku
 - MongoDB Atlas
-
 
 ### Demo
 
