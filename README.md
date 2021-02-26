@@ -12,6 +12,8 @@ Here is a simple solution that can be easily setup 100% free API using,
 
 [https://nuwan94.herokuapp.com](https://nuwan94.herokuapp.com)
 
+![demo](image.png)
+
 If you have any question please create a [issue](/issues/new/choose).
 
 # Why
