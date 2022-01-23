@@ -61,7 +61,7 @@ cron.schedule(cronInterval, async function() {
 
     await axios.get(process.env.MEDIUM_URI).then((response) => {
         const $ = cheerio.load(response.data);
-        followers_count = $('a:contains("Followers")').first().text().split(" ")[0];
+        followers_count = $('button:contains("Followers")').first().text().split(" ")[0];
         following_count = $('a:contains("Following")').first().text().split(" ")[0];
     });
 
